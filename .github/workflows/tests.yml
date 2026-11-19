@@ -16,7 +16,7 @@ env:
 jobs:
   android:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
 
@@ -53,6 +53,8 @@ jobs:
           arch: x86_64
           target: google_apis
           profile: pixel_5
+          ram-size: 4096M
+          cores: 3
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: bash scripts/ci_run.sh
