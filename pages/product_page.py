@@ -21,12 +21,21 @@ class ProductPage(BasePage):
     def quantity(self):
         return int(self.text_of(self.QUANTITY))
 
+    def _bring_stepper_into_view(self):
+        # On smaller or denser screens the quantity row sits below the fold.
+        try:
+            self.scroll_to("plusIV")
+        except Exception:
+            pass  # already visible, or the screen is not scrollable
+
     def increase(self, times=1):
+        self._bring_stepper_into_view()
         for _ in range(times):
             self.tap(self.PLUS)
         return self
 
     def decrease(self, times=1):
+        self._bring_stepper_into_view()
         for _ in range(times):
             self.tap(self.MINUS)
         return self

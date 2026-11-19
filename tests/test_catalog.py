@@ -34,8 +34,8 @@ def test_sort_orders_visible_products(app, option, key, reverse):
 
 
 def test_product_detail_matches_catalog_card(app):
-    name = "Sauce Labs Backpack (red)"  # not the green one: see KD-4
-    price = dict(app.visible_products())[name]
+    # First card: fully on screen at any resolution (the second, green one is KD-4)
+    name, price = app.visible_products()[0]
     product = app.open_product(name)
     assert product.name() == name
     assert product.price() == price
